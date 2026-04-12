@@ -27,7 +27,6 @@ int main() {
     FD_ZERO(&fdread);
     FD_SET(listener, &fdread);
 
-    // Mảng lưu tên client, nếu name[i][0] == 0 nghĩa là chưa đăng nhập
     char client_names[FD_SETSIZE][50];
     memset(client_names, 0, sizeof(client_names));
 
@@ -52,11 +51,9 @@ int main() {
                         close(i);
                     } else {
                         buf[ret] = 0;
-                        // Xóa ký tự xuống dòng nếu có
                         if (buf[ret-1] == '\n') buf[ret-1] = 0;
 
                         if (client_names[i][0] == 0) {
-                            // Chưa đăng nhập, kiểm tra cú pháp [cite: 4, 5]
                             char name[50];
                             if (sscanf(buf, "client_id: %s", name) == 1) {
                                 strcpy(client_names[i], name);
@@ -66,7 +63,6 @@ int main() {
                                 send(i, err, strlen(err), 0);
                             }
                         } else {
-                            // Đã đăng nhập, tiến hành broadcast kèm timestamp 
                             time_t now = time(NULL);
                             struct tm *t = localtime(&now);
                             char time_buf[30];
@@ -76,7 +72,6 @@ int main() {
                             sprintf(out_buf, "%s %s: %s\n", time_buf, client_names[i], buf);
 
                             for (int j = 0; j < FD_SETSIZE; j++) {
-                                // Gửi cho các client khác đã đăng nhập
                                 if (FD_ISSET(j, &fdread) && j != listener && j != i && client_names[j][0] != 0) {
                                     send(j, out_buf, strlen(out_buf), 0);
                                 }

@@ -8,7 +8,6 @@
 
 #define PORT 9090
 
-// Hàm kiểm tra tài khoản [cite: 12, 13, 14]
 int check_login(char *user, char *pass) {
     FILE *f = fopen("login.txt", "r");
     if (f == NULL) return 0;
@@ -63,7 +62,7 @@ int main() {
                     } else {
                         buf[ret] = 0;
                         if (buf[ret-1] == '\n') buf[ret-1] = 0;
-                        if (buf[ret-2] == '\r') buf[ret-2] = 0; // Xử lý telnet client windows
+                        if (buf[ret-2] == '\r') buf[ret-2] = 0; 
 
                         if (!logged_in[i]) {
                             char user[50], pass[50];
@@ -74,12 +73,10 @@ int main() {
                                 send(i, "Loi dang nhap! Nhap lai user pass: ", 35, 0);
                             }
                         } else {
-                            // Thuc thi lenh [cite: 17, 18, 20]
                             char cmd[1100];
                             sprintf(cmd, "%s > out.txt 2>&1", buf);
                             system(cmd);
 
-                            // Doc out.txt tra ve client [cite: 20]
                             FILE *f = fopen("out.txt", "rb");
                             while (1) {
                                 int n = fread(buf, 1, sizeof(buf), f);
