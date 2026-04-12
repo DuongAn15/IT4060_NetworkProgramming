@@ -1,0 +1,9 @@
+total 837
+-rwxrwxrwx 1 duongan duongan 443184 Apr 12 22:53 AnTD_W7_0704_Report.docx
+-rwxrwxrwx 1 duongan duongan 357576 Apr 12 21:17 Bai_tap_ve_nha_02.pdf
+-rwxrwxrwx 1 duongan duongan  16752 Apr 12 22:56 chat_server
+-rwxrwxrwx 1 duongan duongan   3498 Apr 12 21:48 chat_server.c
+-rwxrwxrwx 1 duongan duongan     39 Apr 12 22:32 login.txt
+-rwxrwxrwx 1 duongan duongan      0 Apr 12 23:09 out.txt
+-rwxrwxrwx 1 duongan duongan  16848 Apr 12 23:04 telnet_server
+-rwxrwxrwx 1 duongan duongan   3286 Apr 12 22:32 telnet_server.c
